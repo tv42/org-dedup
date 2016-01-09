@@ -13,7 +13,7 @@ import (
 	"regexp"
 )
 
-var Usage = func() {
+func usage() {
 	fmt.Fprintf(os.Stderr, "Usage of %s:\n", os.Args[0])
 	fmt.Fprintf(os.Stderr, "  %s <FILE >FILE\n", os.Args[0])
 	flag.PrintDefaults()
@@ -36,11 +36,11 @@ func main() {
 	log.SetFlags(0)
 	log.SetPrefix(prog + ": ")
 
-	flag.Usage = Usage
+	flag.Usage = usage
 	flag.Parse()
 
 	if flag.NArg() != 0 {
-		Usage()
+		usage()
 		os.Exit(1)
 	}
 
